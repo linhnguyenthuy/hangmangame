@@ -7,10 +7,13 @@
   text-transform: uppercase;
 }
 .letters {
-  font-size: 2em;
-  flex: 1 1 calc(100% / 6 - 0.4em);
-  outline: 0.08em solid silver;
-  margin: 0.2em;
-  display: flex;
-  cursor: default;
+    font-size: 20pt;
+    float:left;
+    position: relative;
+    width: 20%;
+    height: 30%;
+    margin-left: 10%;
+    margin-bottom: 10%;
+    overflow:hidden;
+    outline: 0.08em solid silver;
 }
