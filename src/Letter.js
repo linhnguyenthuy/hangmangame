@@ -5,9 +5,10 @@ import React from 'react'
 import './Letter.css'
 
 
-const Letter = ({ letter, index, states, onClick }) => (
-
-    <div className="letters" onClick={() => onClick(index)}>
+const Letter = ({ letter, isSelected, onClick }) => (
+    <div className="letters" onClick={onClick} style={{
+        background: isSelected ? "red" : "white"
+    }}>
         {letter}
     </div>
 )

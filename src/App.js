@@ -8,36 +8,31 @@ const WORDS = ['ski', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'la
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const HIDDEN_LETTERS = '_'
 
+const generateWord = () => {
+  const candidates = shuffle(WORDS)
+  return candidates.pop()
+}
+
+const word = generateWord();
 
 class App extends React.Component {
   state = {
-    letter: [],
+    letters: [],
   }
 
-  generateWord() {
-    {
-      let candidates = shuffle(WORDS)
-      candidates = candidates.pop()
-      return candidates
-    }
-  }
-
-  tableOfLetters() {
-
-    let letters = LETTERS.map((letter, index, states) =>
-      <Letter key={index} letter={letter} state={states} />
-    )
-    return letters
+  handleLetterClicked(letter) {
+    this.setState({
+      letters: [...this.state.letters, letter]
+    })
   }
 
   render() {
-
     return <div>
-      <div class="handle"><h1>{this.generateWord()}</h1></div>
-      <div class="letters"><p>{this.tableOfLetters()}</p></div>
-
+      <div class="handle"><h1>{word}</h1></div>
+      <div class="letters"><p>{LETTERS.map((letter, index) =>
+        <Letter key={index} isSelected={this.state.letters.includes(letter)} letter={letter} onClick={() => this.handleLetterClicked(letter)} />
+      )}</p></div>
     </div>
-
   }
 }
 
