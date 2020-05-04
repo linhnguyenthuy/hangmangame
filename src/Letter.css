@@ -6,4 +6,6 @@
     display: flex;
     cursor: default;
   }
-  
+  .handle >.clicked{
+    background-color: grey;
+  }

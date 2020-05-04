@@ -10,24 +10,24 @@ const HIDDEN_LETTERS = '_'
 
 
 class App extends React.Component {
+  state = {
+    letter: [],
+  }
+
   generateWord() {
     {
       let candidates = shuffle(WORDS)
       candidates = candidates.pop()
       return candidates
     }
-
-
   }
 
   tableOfLetters() {
 
-    let letters = LETTERS.map((letter, index) =>
-      <Letter key={index}> {letter} </Letter>
+    let letters = LETTERS.map((letter, index, states) =>
+      <Letter key={index} letter={letter} state={states} />
     )
-
     return letters
-
   }
 
   render() {
@@ -35,6 +35,7 @@ class App extends React.Component {
     return <div>
       <div class="handle"><h1>{this.generateWord()}</h1></div>
       <div class="letters"><p>{this.tableOfLetters()}</p></div>
+
     </div>
 
   }
