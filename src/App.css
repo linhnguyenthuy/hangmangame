@@ -1,10 +1,10 @@
 .handle {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
+  display: contents;
+  flex-direction: row;
+  text-align: center;
   margin: auto;
-  user-select: none;
   text-transform: uppercase;
+  cursor: default;
 }
 .letters {
     font-size: 20pt;
@@ -16,4 +16,7 @@
     margin-bottom: 10%;
     overflow:hidden;
     outline: 0.08em solid silver;
+}
+.hide {
+  opacity:0%;
 }

@@ -1,11 +1,9 @@
-.handle > .letters {
-    font-size: 2em;
-    flex: 1 1 calc(100% / 6 - 0.4em);
-    outline: 0.08em solid silver;
-    margin: 0.2em;
-    display: flex;
-    cursor: default;
-  }
-  .handle >.clicked{
-    background-color: grey;
-  }
+.memory > .letter {
+  font-size: 2em;
+  flex: 1 1 calc(100% / 6 - 0.4em);
+  outline: 0.08em solid silver;
+  margin: 0.2em;
+  display: flex;
+  cursor: default;
+}
+

@@ -3,40 +3,68 @@ import './App.css';
 import shuffle from 'lodash.shuffle'
 
 import Letter from './Letter'
+import WordToGuess from './WordToGuess';
 
 const WORDS = ['ski', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
-const HIDDEN_LETTERS = '_'
+
+
+
+const generateWord = () => {
+  {
+    let candidates = shuffle(WORDS)
+    candidates = candidates.pop()
+    return candidates
+  }
+}
+const word = (generateWord())
+const letterInWords = word.split('')
 
 
 class App extends React.Component {
+
+
   state = {
-    letter: [],
+    letters: []
   }
 
-  generateWord() {
-    {
-      let candidates = shuffle(WORDS)
-      candidates = candidates.pop()
-      return candidates
-    }
+
+  handleLetters(letter) {
+    this.setState({
+      letters: [...this.state.letters, letter]
+    })
   }
+
 
   tableOfLetters() {
 
-    let letters = LETTERS.map((letter, index, states) =>
-      <Letter key={index} letter={letter} state={states} />
+    let letters = LETTERS.map((letter, index) =>
+      <Letter key={index} letter={letter} isSelected={this.state.letters.includes(letter)} onClick={() => this.handleLetters(letter)} />
     )
     return letters
   }
 
+  tableOfWord() {
+    let words = letterInWords.map((letterInWord, index) =>
+      <WordToGuess key={index} letterInWord={letterInWord} feedback={this.getFeedbackForLetters(letterInWord)} />
+    )
+    return words
+  }
+
+  getFeedbackForLetters(letterInWord) {
+    const { letters } = this.state
+    const wordMatched = letters.includes(letterInWord)
+    return wordMatched ? 'visible' : 'hidden';
+  }
+
+
   render() {
 
+    console.log("render")
     return <div>
-      <div class="handle"><h1>{this.generateWord()}</h1></div>
-      <div class="letters"><p>{this.tableOfLetters()}</p></div>
-
-    </div>
+      <div class="handle"><h1>{this.tableOfWord()}</h1></div>
+      < div class="letters"><p>{this.tableOfLetters()}</p></div>
+    </div >
 
   }
 }
