@@ -3,7 +3,8 @@ import './App.css';
 import shuffle from 'lodash.shuffle'
 
 import Letter from './Letter'
-import WordToGuess from './WordToGuess';
+import WordToGuess from './WordToGuess'
+import HangMan from './HangMan'
 
 const WORDS = ['ski', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -34,7 +35,15 @@ class App extends React.Component {
       letters: [...this.state.letters, letter]
     })
   }
+  getCounter() {
+    const { letters } = this.state
+    const guesses = letters.filter(letter => letterInWords.includes(letter))
+    return letters.length - guesses.length
+  }
 
+  CountdownOfGuess() {
+
+  }
 
   tableOfLetters() {
 
@@ -62,6 +71,7 @@ class App extends React.Component {
 
     console.log("render")
     return <div>
+      <div class="guesses">{this.getCounter()}</div>
       <div class="handle"><h1>{this.tableOfWord()}</h1></div>
       < div class="letters"><p>{this.tableOfLetters()}</p></div>
     </div >
