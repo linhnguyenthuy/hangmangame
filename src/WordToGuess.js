@@ -9,9 +9,9 @@ const HIDDEN_LETTERS = '_ '
 
 const WordToGuess = ({ isLoose, letterInWord, feedback, isWin }) => (
 
-    <div className={`handle ${feedback}`} style={{ color: isLoose ? "red" : "black" }} style={{ color: isWin ? "blue" : "black" }} >
+    <div className={`handle ${feedback}`} style={{ color: isLoose ? "red" : "black" && isWin ? "blue" : "black" }} >
         {(feedback === 'hidden' && !isLoose) ? HIDDEN_LETTERS : letterInWord}
-    </div>
+    </div >
 )
 
 WordToGuess.propTypes = {

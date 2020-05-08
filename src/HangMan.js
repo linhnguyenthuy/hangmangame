@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types'
+import './HangMan.css'
 
 import React from "react";
 
 
 const HangMan = ({ countDown }) => (
-    <div><img src={`/hangman/${countDown + 1}.png`} />
+    <div class="hangman"><img src={`/hangman/${countDown + 1}.png`} />
     </div>
 )
 
