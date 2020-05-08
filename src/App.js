@@ -5,6 +5,8 @@ import shuffle from 'lodash.shuffle'
 import Letter from './Letter'
 import WordToGuess from './WordToGuess'
 import HangMan from './HangMan'
+import Loose from './Loose'
+import Win from './Win'
 
 const WORDS = ['ski', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -26,7 +28,7 @@ class App extends React.Component {
 
 
   state = {
-    letters: []
+    letters: [],
   }
 
 
@@ -42,8 +44,9 @@ class App extends React.Component {
   }
 
   CountdownOfGuess() {
-
+    return <HangMan countDown={this.getCounter()} />
   }
+
 
   tableOfLetters() {
 
@@ -53,27 +56,38 @@ class App extends React.Component {
     return letters
   }
 
-  tableOfWord() {
+  tableOfWord(isLoose, isWin) {
     let words = letterInWords.map((letterInWord, index) =>
-      <WordToGuess key={index} letterInWord={letterInWord} feedback={this.getFeedbackForLetters(letterInWord)} />
+      <WordToGuess key={index} isLoose={isLoose} isWin={isWin} countDown={this.getCounter()} letterInWord={letterInWord} feedback={this.getFeedbackForLetters(letterInWord)} />
     )
     return words
   }
+
+
 
   getFeedbackForLetters(letterInWord) {
     const { letters } = this.state
     const wordMatched = letters.includes(letterInWord)
     return wordMatched ? 'visible' : 'hidden';
   }
+  ifIswin(letters, letterInWords) {
+    const letterFound = letterInWords.filter(l => letters.includes(l))
+    return letterFound.length === letterInWords.length
+  }
 
 
   render() {
 
-    console.log("render")
+    const { letters } = this.state
+    const isWin = this.ifIswin(letters, letterInWords)
+    const isLoose = this.getCounter() === 10
+
     return <div>
+
       <div class="guesses">{this.getCounter()}</div>
-      <div class="handle"><h1>{this.tableOfWord()}</h1></div>
+      <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
       < div class="letters"><p>{this.tableOfLetters()}</p></div>
+      <div>{this.CountdownOfGuess()}</div>
     </div >
 
   }
