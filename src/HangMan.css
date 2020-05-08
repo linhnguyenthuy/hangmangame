@@ -1,4 +1,15 @@
 .hangman {
 
-    float: right;;
+    float: left;
+    position: relative;
+    margin-left: 200px;
 }
+.winner{
+    display: contents;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: default;
+    position: absolute;
+    color: blue;
+  }
+

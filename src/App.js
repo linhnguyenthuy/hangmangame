@@ -81,15 +81,25 @@ class App extends React.Component {
     const { letters } = this.state
     const isWin = this.ifIswin(letters, letterInWords)
     const isLoose = this.getCounter() === 10
+    if (isWin === true) {
+      return <div>
+        <div className="winner"><Win /></div>
+        <div class="guesses">{this.getCounter()}</div>
+        <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+        < div class="letters"><p>{this.tableOfLetters()}</p></div>
+        <div>{this.CountdownOfGuess()}</div>
 
-    return <div>
+      </div >
+    }
+    else {
+      return <div>
 
-      <div class="guesses">{this.getCounter()}</div>
-      <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-      < div class="letters"><p>{this.tableOfLetters()}</p></div>
-      <div>{this.CountdownOfGuess()}</div>
-    </div >
-
+        <div class="guesses">{this.getCounter()}</div>
+        <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+        < div class="letters"><p>{this.tableOfLetters()}</p></div>
+        <div>{this.CountdownOfGuess()}</div>
+      </div >
+    }
   }
 }
 

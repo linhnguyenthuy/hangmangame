@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
+import './HangMan.css'
 
 import React from "react";
 
-const Win = ({ Win }) => (
-    <div><img src={`/hangman/${Win}.png`} />
+const Win = () => (
+    <div><img src={`/hangman/win.png`} />
     </div>
 )
 

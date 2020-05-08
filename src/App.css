@@ -1,3 +1,6 @@
+* {
+  padding: 0;
+}
 .handle {
   display: contents;
   flex-direction: row;
@@ -5,25 +8,29 @@
   margin: auto;
   text-transform: uppercase;
   cursor: default;
+  position: fixed;
 }
 .letters {
-    font-size: 20pt;
+    font-size: 15pt;
     float:left;
     position: relative;
     width: 20%;
-    height: 30%;
+    height: 20%;
     margin-left: 10%;
     margin-bottom: 10%;
-    overflow:hidden;
+    overflow: visible;
     outline: 0.08em solid silver;
+    text-transform: uppercase;
+    text-align: center;
 }
 .hide {
   opacity:0%;
 }
 .guesses {
-  font-size: 1em;
+  font-size: 10pt;
   width: calc(100% - 0.4em);
-  margin: 0.2em;
-  text-align: center;
+  padding-left: 20%;
+  text-align: left;
   font-family: Menlo, Monaco, Consolas, Inconsolata, 'Courier New', monospace;
+  position: relative;
 }
