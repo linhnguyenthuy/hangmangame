@@ -88,14 +88,12 @@ class App extends React.Component {
     if (isLoose === true) {
       return <div>
 
+
         <div class="guesses">{this.getCounter()}</div>
         <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
         < div class="letters"><p>{this.tableOfLetters()}</p></div>
         <div className="loose"><Loose /></div>
-        <div className="button"> <button
-          type="button"
-          onClick={() => this.Restart()}
-        >Nouvelle partie?</button></div>
+        <div> <button type="button" class="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
       </div >
     }
@@ -107,7 +105,7 @@ class App extends React.Component {
         < div class="letters"><p>{this.tableOfLetters()}</p></div>
         <div className="winner"><Win /></div>
 
-        <div className="button"> <button type="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
+        <div> <button type="button" class="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
       </div >
     }

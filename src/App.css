@@ -1,5 +1,6 @@
 * {
   padding: 0;
+  
 }
 .handle {
   display: contents;
@@ -45,10 +46,21 @@
   margin-left: 0px;
 }
 .button{
+  width: 120px;
+  height: 20px;
   -ms-transform: scale(1.5); 
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
   position: absolute; 
+  text-align: center;
   bottom: 50px;
   left: 600px;
+  border-radius: 6px;
+  background-color: cornflowerblue;
+  color: white;
+  text-transform: uppercase;
 }
+.button:hover {
+  opacity: 80%;
+ }
+
