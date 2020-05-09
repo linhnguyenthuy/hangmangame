@@ -9,7 +9,7 @@ import Loose from './Loose'
 import Win from './Win'
 
 
-const WORDS = ['ski', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe']
+const WORDS = ['ski', 'axe', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe', 'bel', 'cou', 'dune', 'joli', 'ours', 'pion', 'avion', 'cycle', 'valse', 'jambe', 'animal', 'boucle', 'crayon', 'humour', 'chariot', 'clairon', 'fourmis', 'mondial', 'vautour', 'aquarium', 'objectif', 'tabouret', 'triangle', 'ascenseur', 'avalanche', 'brillance', 'graphique', 'populaire', 'vestiaire', 'bouillotte', 'citrouille', 'subjective', 'chlorophylle', 'qualification', 'conspirateur']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
