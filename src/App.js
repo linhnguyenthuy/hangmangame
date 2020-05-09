@@ -34,9 +34,11 @@ class App extends React.Component {
 
 
   handleLetters(letter) {
-    this.setState({
-      letters: [...this.state.letters, letter]
-    })
+    if (!this.ifIswin(this.state.letters, letterInWords) && (this.getCounter() < 10)) {
+      this.setState({
+        letters: [...this.state.letters, letter]
+      })
+    }
   }
   getCounter() {
     const { letters } = this.state
@@ -104,6 +106,7 @@ class App extends React.Component {
         <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
         < div class="letters"><p>{this.tableOfLetters()}</p></div>
         <div className="winner"><Win /></div>
+
         <div className="button"> <button type="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
       </div >
