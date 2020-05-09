@@ -3,16 +3,10 @@ import PropTypes from 'prop-types'
 import React from "react";
 
 
-const Loose = ({ countDown, Wordguessed, letterInWord }) => (
-    <div>
-        {countDown === 10 && Wordguessed === letterInWord}
+const Loose = () => (
+    <div><img src={`/hangman/Loose.gif`} />
     </div>
 )
-
-
-Loose.propTypes = {
-    countDown: PropTypes.number.isRequired
-};
 
 
 export default Loose

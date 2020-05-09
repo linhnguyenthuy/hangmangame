@@ -8,6 +8,7 @@ import HangMan from './HangMan'
 import Loose from './Loose'
 import Win from './Win'
 
+
 const WORDS = ['ski', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
@@ -28,7 +29,7 @@ class App extends React.Component {
 
 
   state = {
-    letters: [],
+    letters: []
   }
 
 
@@ -63,8 +64,6 @@ class App extends React.Component {
     return words
   }
 
-
-
   getFeedbackForLetters(letterInWord) {
     const { letters } = this.state
     const wordMatched = letters.includes(letterInWord)
@@ -75,19 +74,37 @@ class App extends React.Component {
     return letterFound.length === letterInWords.length
   }
 
+  Restart() {
+    window.location.reload(false)
+  }
 
   render() {
-
     const { letters } = this.state
     const isWin = this.ifIswin(letters, letterInWords)
     const isLoose = this.getCounter() === 10
-    if (isWin === true) {
+
+    if (isLoose === true) {
       return <div>
-        <div className="winner"><Win /></div>
+
         <div class="guesses">{this.getCounter()}</div>
         <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
         < div class="letters"><p>{this.tableOfLetters()}</p></div>
-        <div>{this.CountdownOfGuess()}</div>
+        <div className="loose"><Loose /></div>
+        <div className="button"> <button
+          type="button"
+          onClick={() => this.Restart()}
+        >Nouvelle partie?</button></div>
+
+      </div >
+    }
+    if (isWin === true) {
+      return <div>
+
+        <div class="guesses">{this.getCounter()}</div>
+        <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+        < div class="letters"><p>{this.tableOfLetters()}</p></div>
+        <div className="winner"><Win /></div>
+        <div className="button"> <button type="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
       </div >
     }
