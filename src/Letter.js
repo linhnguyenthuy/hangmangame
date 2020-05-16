@@ -1,27 +1,24 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-import React from 'react'
+import React from 'react';
 
-import './Letter.css'
-
-
+import './Letter.css';
 
 const Letter = ({ letter, isSelected, onClick }) => (
-
-    <div className="letters" onClick={onClick} style={{
-        background: isSelected ? "grey" : "white"
-    }}>
-        {letter}
-    </div>
-)
-
-
+  <span
+    className='letter'
+    onClick={onClick}
+    style={{
+      background: isSelected ? 'grey' : 'white',
+    }}
+  >
+    {letter}
+  </span>
+);
 
 Letter.propTypes = {
-    letter: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-    onClick: PropTypes.func.isRequired,
-}
+  letter: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
 
-
-export default Letter
+export default Letter;

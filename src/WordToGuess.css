@@ -1,0 +1,30 @@
+.result {
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  justify-content: center;
+  height: 40px;
+}
+
+.result__character {
+  border-bottom: 2px solid black;
+  width: 30px;
+  padding-bottom: 5px;
+  margin: 0 5px;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.result__character.no-border,
+.result__character.visible {
+  border-bottom-color: white;
+}
+
+.result__character.win {
+  color: blue;
+}
+
+.result__character.loose {
+  color: red;
+}

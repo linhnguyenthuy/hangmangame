@@ -1,21 +1,25 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
-import React from "react";
+import React from 'react';
 
-import './WordToGuess.css'
+import './WordToGuess.css';
 
-const HIDDEN_LETTERS = '_ '
-
-
-const WordToGuess = ({ isLoose, letterInWord, feedback, isWin }) => (
-
-    <div className={`handle ${feedback}`} style={{ color: isLoose ? "red" : "black" && isWin ? "blue" : "black" }} >
-        {(feedback === 'hidden' && !isLoose) ? HIDDEN_LETTERS : letterInWord}
-    </div >
-)
+const WordToGuess = ({ isLoose, letterInWord, feedback, isWin, isSpace }) => {
+  const classes = classnames(`result__character ${feedback}`, {
+    'no-border': isSpace || isLoose,
+    win: isWin,
+    loose: isLoose,
+  });
+  return (
+    <div className={classes}>
+      {feedback === 'hidden' && !isLoose ? '' : letterInWord}
+    </div>
+  );
+};
 
 WordToGuess.propTypes = {
-    letterInWord: PropTypes.string.isRequired,
-}
+  letterInWord: PropTypes.string.isRequired,
+};
 
-export default WordToGuess
+export default WordToGuess;

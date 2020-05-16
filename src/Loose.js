@@ -1,12 +1,9 @@
-import PropTypes from 'prop-types'
-
-import React from "react";
-
+import React from 'react';
 
 const Loose = () => (
-    <div><img src={`/hangman/Loose.gif`} />
-    </div>
-)
+  <div className='loser'>
+    <img src={`/hangman/Loose.gif`} alt='loser' />
+  </div>
+);
 
-
-export default Loose
+export default Loose;
