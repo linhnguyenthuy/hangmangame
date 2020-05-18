@@ -10,7 +10,7 @@ const HIDDEN_LETTERS = '_'
 const WordToGuess = ({ isLoose, letterInWord, feedback, isWin }) => {
     return (
         < div className={`handle ${feedback}`} style={{ color: isLoose ? "red" : "black" && isWin ? "blue" : "black" }} >
-            {(feedback === 'hidden' && !isLoose && letterInWord !== "-" && letterInWord !== " ") ? HIDDEN_LETTERS : letterInWord}&nbsp;
+            {(feedback === 'hidden' && !isLoose && letterInWord !== "-" && letterInWord !== " " && letterInWord !== "’") ? HIDDEN_LETTERS : letterInWord}&nbsp;
         </div >
     )
 }

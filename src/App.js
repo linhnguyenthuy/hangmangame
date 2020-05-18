@@ -9,7 +9,7 @@ import Loose from './Loose'
 import Win from './Win'
 
 
-const WORDS = ['ski', 'axe', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe', 'bel', 'cou', 'dune', 'joli', 'ours', 'pion', 'avion', 'cycle', 'valse', 'jambe', 'animal', 'boucle', 'crayon', 'humour', 'chariot', 'clairon', 'fourmis', 'mondial', 'vautour', 'aquarium', 'objectif', 'tabouret', 'triangle', 'ascenseur', 'avalanche', 'brillance', 'graphique', 'populaire', 'vestiaire', 'bouillotte', 'citrouille', 'subjective', 'chlorophylle', 'qualification', 'conspirateur', 'compte rendu', 'pots-de-vin', 'garde-boue', 'garde-manger', 'arcs-en-ciel', 'haut-parleurs', 'abat-jour', 'gratte-ciel', 'apres-midi', 'brise-glace', 'coupe-papier', 'porte-bonheur', 'porte-plume', 'porte-monnaie', 'tire-bouchon', 'pomme de terre', 'anticonstitutionnellement', 'confinement', 'bande dessinee', 'compte rendu', 'millefeuille', 'photocopie', 'savoir-faire', 'clairvoyant', 'rouge-gorge', 'insecticide', 'vice-president', 'supermarche']
+const WORDS = ['ski', 'axe', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe', 'bel', 'cou', 'dune', 'joli', 'ours', 'pion', 'avion', 'cycle', 'valse', 'jambe', 'animal', 'boucle', 'crayon', 'humour', 'chariot', 'clairon', 'fourmis', 'mondial', 'vautour', 'aquarium', 'objectif', 'tabouret', 'triangle', 'ascenseur', 'avalanche', 'brillance', 'graphique', 'populaire', 'vestiaire', 'bouillotte', 'citrouille', 'subjective', 'chlorophylle', 'qualification', 'conspirateur', 'compte rendu', 'pots-de-vin', 'garde-boue', 'garde-manger', 'arcs-en-ciel', 'haut-parleurs', 'abat-jour', 'gratte-ciel', 'apres-midi', 'brise-glace', 'coupe-papier', 'porte-bonheur', 'porte-plume', 'porte-monnaie', 'tire-bouchon', 'pomme de terre', 'anticonstitutionnellement', 'confinement', 'bande dessinee', 'compte rendu', 'millefeuille', 'photocopie', 'savoir-faire', 'clairvoyant', 'rouge-gorge', 'insecticide', 'vice-president', 'supermarche', 'chefs-d’oeuvre', 'clins d’oeil', 'pieds de biche']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
@@ -73,7 +73,7 @@ class App extends React.Component {
     // if (wordMatched === ' ') { return letterInWord }
   }
   ifIswin(letters, letterInWords) {
-    letterInWords = letterInWords.filter(l => l !== (' ') && l !== ('-'));
+    letterInWords = letterInWords.filter(l => l !== ('’') && l !== ('-') && l !== (' '));
     const letterFound = letterInWords.filter(l => letters.includes(l))
     return letterFound.length === letterInWords.length
   }
