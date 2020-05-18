@@ -4,15 +4,16 @@ import React from "react";
 
 import './WordToGuess.css'
 
-const HIDDEN_LETTERS = '_ '
+const HIDDEN_LETTERS = '_'
 
 
-const WordToGuess = ({ isLoose, letterInWord, feedback, isWin }) => (
-
-    <div className={`handle ${feedback}`} style={{ color: isLoose ? "red" : "black" && isWin ? "blue" : "black" }} >
-        {(feedback === 'hidden' && !isLoose) ? HIDDEN_LETTERS : letterInWord}
-    </div >
-)
+const WordToGuess = ({ isLoose, letterInWord, feedback, isWin }) => {
+    return (
+        < div className={`handle ${feedback}`} style={{ color: isLoose ? "red" : "black" && isWin ? "blue" : "black" }} >
+            {(feedback === 'hidden' && !isLoose && letterInWord !== "-" && letterInWord !== " ") ? HIDDEN_LETTERS : letterInWord}&nbsp;
+        </div >
+    )
+}
 
 WordToGuess.propTypes = {
     letterInWord: PropTypes.string.isRequired,

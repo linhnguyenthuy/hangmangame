@@ -19,7 +19,6 @@ const Letter = ({ letter, isSelected, onClick }) => (
 
 Letter.propTypes = {
     letter: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired,
 }
 

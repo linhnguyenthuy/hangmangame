@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import shuffle from 'lodash.shuffle'
 
@@ -9,17 +9,15 @@ import Loose from './Loose'
 import Win from './Win'
 
 
-const WORDS = ['ski', 'axe', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe', 'bel', 'cou', 'dune', 'joli', 'ours', 'pion', 'avion', 'cycle', 'valse', 'jambe', 'animal', 'boucle', 'crayon', 'humour', 'chariot', 'clairon', 'fourmis', 'mondial', 'vautour', 'aquarium', 'objectif', 'tabouret', 'triangle', 'ascenseur', 'avalanche', 'brillance', 'graphique', 'populaire', 'vestiaire', 'bouillotte', 'citrouille', 'subjective', 'chlorophylle', 'qualification', 'conspirateur']
+const WORDS = ['ski', 'axe', 'cri', 'lune', 'rock', 'bruit', 'radar', 'coquelicot', 'labyrinthe', 'bel', 'cou', 'dune', 'joli', 'ours', 'pion', 'avion', 'cycle', 'valse', 'jambe', 'animal', 'boucle', 'crayon', 'humour', 'chariot', 'clairon', 'fourmis', 'mondial', 'vautour', 'aquarium', 'objectif', 'tabouret', 'triangle', 'ascenseur', 'avalanche', 'brillance', 'graphique', 'populaire', 'vestiaire', 'bouillotte', 'citrouille', 'subjective', 'chlorophylle', 'qualification', 'conspirateur', 'compte rendu', 'pots-de-vin', 'garde-boue', 'garde-manger', 'arcs-en-ciel', 'haut-parleurs', 'abat-jour', 'gratte-ciel', 'apres-midi', 'brise-glace', 'coupe-papier', 'porte-bonheur', 'porte-plume', 'porte-monnaie', 'tire-bouchon', 'pomme de terre', 'anticonstitutionnellement', 'confinement', 'bande dessinee', 'compte rendu', 'millefeuille', 'photocopie', 'savoir-faire', 'clairvoyant', 'rouge-gorge', 'insecticide', 'vice-president', 'supermarche']
 const LETTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
 
 
 const generateWord = () => {
-  {
-    let candidates = shuffle(WORDS)
-    candidates = candidates.pop()
-    return candidates
-  }
+  let candidates = shuffle(WORDS)
+  candidates = candidates.pop()
+  return candidates
 }
 const word = (generateWord())
 const letterInWords = word.split('')
@@ -69,9 +67,13 @@ class App extends React.Component {
   getFeedbackForLetters(letterInWord) {
     const { letters } = this.state
     const wordMatched = letters.includes(letterInWord)
-    return wordMatched ? 'visible' : 'hidden';
+    if (wordMatched === true) { return 'visible' }
+    if (wordMatched === false) { return 'hidden' }
+    // if (wordMatched === '-') { return letterInWord }
+    // if (wordMatched === ' ') { return letterInWord }
   }
   ifIswin(letters, letterInWords) {
+    letterInWords = letterInWords.filter(l => l !== (' ') && l !== ('-'));
     const letterFound = letterInWords.filter(l => letters.includes(l))
     return letterFound.length === letterInWords.length
   }
@@ -84,37 +86,45 @@ class App extends React.Component {
     const { letters } = this.state
     const isWin = this.ifIswin(letters, letterInWords)
     const isLoose = this.getCounter() === 10
+    let resultDisplay = null
+    const buttonRestart = (
+      <div className='button-wrapper'>
+        <button type='button' className='button' onClick={() => this.Restart()}>
+          Nouvelle partie?
+        </button>
+      </div>
+    );
 
     if (isLoose === true) {
       return <div>
 
 
-        <div class="guesses">{this.getCounter()}</div>
-        <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-        < div class="letters"><p>{this.tableOfLetters()}</p></div>
+        <div className="guesses">{this.getCounter()}</div>
+        <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+        < div className="letters">{this.tableOfLetters()}</div>
         <div className="loose"><Loose /></div>
-        <div> <button type="button" class="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
+        <div> <button type="button" className="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
       </div >
     }
     if (isWin === true) {
       return <div>
 
-        <div class="guesses">{this.getCounter()}</div>
-        <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-        < div class="letters"><p>{this.tableOfLetters()}</p></div>
+        <div className="guesses">{this.getCounter()}</div>
+        <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+        < div className="letters">{this.tableOfLetters()}</div>
         <div className="winner"><Win /></div>
 
-        <div> <button type="button" class="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
+        <div> <button type="button" className="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
       </div >
     }
     else {
       return <div>
 
-        <div class="guesses">{this.getCounter()}</div>
-        <div class="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-        < div class="letters"><p>{this.tableOfLetters()}</p></div>
+        <div className="guesses">{this.getCounter()}</div>
+        <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+        < div className="letters">{this.tableOfLetters()}</div>
         <div>{this.CountdownOfGuess()}</div>
       </div >
     }
