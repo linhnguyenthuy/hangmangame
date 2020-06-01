@@ -19,20 +19,20 @@ const generateWord = () => {
   candidates = candidates.pop()
   return candidates
 }
-const word = (generateWord())
-const letterInWords = word.split('')
-
 
 class App extends React.Component {
 
-
   state = {
-    letters: []
+    letterInWords: generateWord().split(''),
+    letters: [],
+    CounterLoose: 0,
+    CouterTotal: 0
+
   }
 
 
   handleLetters(letter) {
-    if (!this.ifIswin(this.state.letters, letterInWords) && (this.getCounter() < 10)) {
+    if (!this.ifIswin(this.state.letters, this.state.letterInWords) && (this.getCounter() < 10)) {
       this.setState({
         letters: [...this.state.letters, letter]
       })
@@ -40,7 +40,7 @@ class App extends React.Component {
   }
   getCounter() {
     const { letters } = this.state
-    const guesses = letters.filter(letter => letterInWords.includes(letter))
+    const guesses = letters.filter(letter => this.state.letterInWords.includes(letter))
     return letters.length - guesses.length
   }
 
@@ -58,7 +58,7 @@ class App extends React.Component {
   }
 
   tableOfWord(isLoose, isWin) {
-    let words = letterInWords.map((letterInWord, index) =>
+    let words = this.state.letterInWords.map((letterInWord, index) =>
       <WordToGuess key={index} isLoose={isLoose} isWin={isWin} countDown={this.getCounter()} letterInWord={letterInWord} feedback={this.getFeedbackForLetters(letterInWord)} />
     )
     return words
@@ -78,12 +78,20 @@ class App extends React.Component {
     return letterFound.length === letterInWords.length
   }
 
-  Restart() {
-    window.location.reload(false)
+  Restart(letterInWords) {
+    return this.setState(letterInWords)
+  }
+
+  counterWhenLoose() {
+    let { CounterLoose } = this.state
+    const NewCounterLoose = CounterLoose + 1
+    this.setState({ CounterLoose: NewCounterLoose })
+
   }
 
   render() {
-    const { letters } = this.state
+    const looseCounter = this.counterWhenLoose()
+    const { letters, letterInWords } = this.state
     const isWin = this.ifIswin(letters, letterInWords)
     const isLoose = this.getCounter() === 10
     let resultDisplay = null
@@ -94,42 +102,45 @@ class App extends React.Component {
         </button>
       </div>
     );
-
     if (isLoose === true) {
-      return <div>
+
+      resultDisplay = (
+        <div>
+          <Loose />
+          {buttonRestart}
+          {looseCounter}
+        </div >
+      )
 
 
-        <div className="guesses">{this.getCounter()}</div>
-        <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-        < div className="letters">{this.tableOfLetters()}</div>
-        <div className="loose"><Loose /></div>
-        <div> <button type="button" className="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
 
-      </div >
     }
-    if (isWin === true) {
-      return <div>
-
-        <div className="guesses">{this.getCounter()}</div>
-        <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-        < div className="letters">{this.tableOfLetters()}</div>
-        <div className="winner"><Win /></div>
-
-        <div> <button type="button" className="button" onClick={() => this.Restart()}>Nouvelle partie?</button></div>
-
-      </div >
+    else if (isWin === true) {
+      resultDisplay = (
+        <div>
+          <Win />
+          {buttonRestart}
+        </div>
+      )
     }
+
     else {
-      return <div>
-
-        <div className="guesses">{this.getCounter()}</div>
-        <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
-        < div className="letters">{this.tableOfLetters()}</div>
+      resultDisplay = (
         <div>{this.CountdownOfGuess()}</div>
-      </div >
+      )
     }
+
+    return <div>
+
+      <div className="guesses">{this.getCounter()}</div>
+      <div className="handle"><h1>{this.tableOfWord(isLoose, isWin)}</h1></div>
+      < div className="letters">{this.tableOfLetters()}</div>
+
+      <div>{resultDisplay}</div>
+    </div >
   }
 }
+
 
 
 
